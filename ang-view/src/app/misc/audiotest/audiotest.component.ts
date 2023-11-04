@@ -12,7 +12,7 @@ declare var $: any;
 export class AudiotestComponent implements OnInit, AfterViewInit {
 
 
-  isAudPlaying: String = 'false';
+  isAudBtnDis: boolean = false;
   panVal: number = 0;
   gainVal: number = 0.5;
   frequencyArray: any;
@@ -62,7 +62,12 @@ export class AudiotestComponent implements OnInit, AfterViewInit {
   }
 
   PlayBeep() {
+    this.isAudBtnDis = true;
     this.beep(this.panVal);
+    setTimeout(() =>{
+      this.isAudBtnDis = false;
+    }, 5000);
+    
   }
 
   playsrc() {
@@ -120,27 +125,29 @@ export class AudiotestComponent implements OnInit, AfterViewInit {
     this.analyser.connect(this._audioContext.destination);
 
     oscillatorNode.start();
-    oscillatorNode.stop(this._audioContext.currentTime + 7.5);
+    oscillatorNode.stop(this._audioContext.currentTime + 5.5);
     this.visualizeData(oscillatorNode);
   }
 
 
   visualizeData = (osc: any) => {
+    debugger;
     var animationController = window.requestAnimationFrame(this.visualizeData);
     if (osc.paused) {
       return cancelAnimationFrame(animationController);
     }
-    const songData = new Uint8Array(140);
+    const bincount = this.analyser.frequencyBinCount
+    const songData = new Uint8Array(bincount);
     this.analyser.getByteFrequencyData(songData);
     const bar_width = 3;
     let start = 0;
-    const ctx = this.canvas.nativeElement.getContext("2d");
-    ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+    this.context = this.canvas.nativeElement.getContext("2d");
+    this.context.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
     for (let i = 0; i < songData.length; i++) {
       // compute x coordinate where we would draw
       start = i * 4;
       //create a gradient for the  whole canvas
-      let gradient = ctx.createLinearGradient(
+      let gradient = this.context.createLinearGradient(
         0,
         0,
         this.canvas.nativeElement.width,
@@ -149,8 +156,9 @@ export class AudiotestComponent implements OnInit, AfterViewInit {
       gradient.addColorStop(0.2, "#2392f5");
       gradient.addColorStop(0.5, "#fe0095");
       gradient.addColorStop(1.0, "purple");
-      ctx.fillStyle = gradient;
-      ctx.fillRect(start, this.canvas.nativeElement.height/2, bar_width, -songData[i]);
+      this.context.fillStyle = gradient;
+      this.context.fillRect(start, this.canvas.nativeElement.height
+        , bar_width, -songData[i] / 2.5);
     }
   };
 
