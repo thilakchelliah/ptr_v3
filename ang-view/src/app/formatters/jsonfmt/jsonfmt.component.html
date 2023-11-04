@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-sm-12 p-5">
+        <div class="card">
+            <div class="card-header">
+                <h5>Json Formatter</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group mb-0">
+                        <label class="form-label" for="inptJson">Input Json</label>
+                        <textarea class="form-control " id="inptJson" rows="4" [(ngModel)]="txtjson"
+                            (change)="checkjson()" (paste)="checkjson()"></textarea>
+                        <div class="invalid-feedback" [ngClass]="isValidJson? 'd-none' : 'd-block'">
+                            Please enter a valid json in the textarea.
+                        </div>
+                        <div class="invalid-feedback" [ngClass]="isFilled? 'd-none' : 'd-block'">
+                            textarea is empty.
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group ">
+                        <button class="form-label btn btn-primary mr-2" (click)="formatJson()">Format</button>
+                    </div>
+
+                </div>
+                <div class="row">
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs"  (shown)="tabChanged()">
+                                <li [ngbNavItem]="1">
+                                    <button ngbNavLink>Formatter Pre-Text</button>
+                                    <ng-template ngbNavContent>
+                                        <div class="overflow-auto" style="max-width: 95%; max-height: 400px;">
+                                            <pre id="output">{{formattedJson}}</pre>
+                                        </div>
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="2">
+                                    <button ngbNavLink>Beautified</button>
+                                    <ng-template ngbNavContent>
+                                        <pre id="json-renderer"></pre>
+                                    </ng-template>
+                                </li>
+                               
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-footer">
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
