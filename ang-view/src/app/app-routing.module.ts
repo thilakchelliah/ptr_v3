@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component'
 import { JsonfmtComponent } from './formatters/jsonfmt/jsonfmt.component'
 import { AudiotestComponent } from './misc/audiotest/audiotest.component'
+import { TempconvComponent } from './convertor/tempconv/tempconv.component'
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
   { path: 'jsonfmt', component: JsonfmtComponent },
   { path: 'maud', component: AudiotestComponent },
+  { path: 'tempc', component: TempconvComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

@@ -46,6 +46,9 @@
                         <div class="mb-3">
                           <label for="formFile" class="form-label">Choose Local Audio source</label>
                           <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+                          <div class="invalid-feedback" [ngClass]="isValidSound? 'd-none' : 'd-block'">
+                            Please choose only mp3, wav or ogg file types.
+                        </div>
                         </div>
                         <audio controls id="audtag" class="w-100" (play)="playsrc()"></audio>
                       </ng-template>

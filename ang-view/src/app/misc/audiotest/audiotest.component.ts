@@ -26,6 +26,8 @@ export class AudiotestComponent implements OnInit, AfterViewInit {
   centerY: number = 0;
   selectedfile: any;
   active = 1;
+  isValidSound: boolean = true;
+
 
   @ViewChild('canvas') canvas!: ElementRef;
   context: any;
@@ -33,6 +35,7 @@ export class AudiotestComponent implements OnInit, AfterViewInit {
   //Audio globals
   panner: any;
   gainer: any;
+  validFileExtensions = ["mp3", "wav", "ogg"];
 
   constructor(private _audioContext: AudioContext) {
 
@@ -64,10 +67,10 @@ export class AudiotestComponent implements OnInit, AfterViewInit {
   PlayBeep() {
     this.isAudBtnDis = true;
     this.beep(this.panVal);
-    setTimeout(() =>{
+    setTimeout(() => {
       this.isAudBtnDis = false;
     }, 5000);
-    
+
   }
 
   playsrc() {
@@ -84,10 +87,23 @@ export class AudiotestComponent implements OnInit, AfterViewInit {
   }
 
   onFileSelected(event: any) {
-    if (event.target.files.length > 0) {
+    if (event.target.files.length > 0 && this.validateFileType(event.target.value)) {
       $('#audtag').attr('src', URL.createObjectURL(event.target.files[0]))
+      this.isValidSound = true;
     }
+    else
+      this.isValidSound = false;
   }
+
+  validateFileType(fileName: string) {
+    var idxDot = fileName.lastIndexOf(".") + 1;
+    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    if (this.validFileExtensions.includes(extFile))
+      return true;
+    else
+      return false;
+  }
+
 
   pannerChange() {
     this.panner.pan.value = this.panVal;
@@ -96,19 +112,7 @@ export class AudiotestComponent implements OnInit, AfterViewInit {
     this.gainer.gain.value = this.gainVal;
   }
 
-  readAsDataURL(file: any) {
-    const reader = new FileReader();
-    return new Promise((resolve, reject) => {
-      if (file instanceof File) {
-        reader.onload = () => {
-          resolve(reader.result);
-        };
-        reader.readAsDataURL(file);
-      } else {
-        reject(new Error("This type of object is not supported"));
-      }
-    });
-  }
+
 
 
 

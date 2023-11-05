@@ -15,6 +15,7 @@ import { AudiotestComponent } from './misc/audiotest/audiotest.component';
 
 //external modules 
 import { AudioContextModule } from 'angular-audio-context';
+import { TempconvComponent } from './convertor/tempconv/tempconv.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AudioContextModule } from 'angular-audio-context';
     WarningsectionComponent,
     HomepageComponent,
     JsonfmtComponent,
-    AudiotestComponent
+    AudiotestComponent,
+    TempconvComponent
   ],
   imports: [
     BrowserModule,
