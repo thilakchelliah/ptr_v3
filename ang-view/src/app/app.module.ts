@@ -9,13 +9,13 @@ import { HeaderComponent } from './shared/header/header.component';
 import { WarningsectionComponent } from './shared/warningsection/warningsection.component';
 //Internal components
 import { HomepageComponent } from './homepage/homepage.component';
-import { JsonfmtComponent } from './formatters/jsonfmt/jsonfmt.component';
 import { FormsModule } from '@angular/forms';
 import { AudiotestComponent } from './misc/audiotest/audiotest.component';
 
 //external modules 
 import { AudioContextModule } from 'angular-audio-context';
-import { TempconvComponent } from './convertor/tempconv/tempconv.component';
+
+import { ColourpalComponent } from './misc/colourpal/colourpal.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +24,8 @@ import { TempconvComponent } from './convertor/tempconv/tempconv.component';
     HeaderComponent,
     WarningsectionComponent,
     HomepageComponent,
-    JsonfmtComponent,
     AudiotestComponent,
-    TempconvComponent
+    ColourpalComponent
   ],
   imports: [
     BrowserModule,

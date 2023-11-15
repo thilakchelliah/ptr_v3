@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-sm-12 p-5">
+        <div class="card">
+            <div class="card-header">
+                <h5>Temperature Convertor</h5>
+            </div>
+            <div class="card-body">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12">
+                            <label for="formFile" class="form-label">Unit</label>
+                            <input class="form-control" type="text" [(ngModel)]="unitVal" (change)="ConvertUnit()">
+                            <select class="form-control" [(ngModel)]="unitType" (change)="ConvertUnit()">
+                                <option *ngFor="let unitT of dgUnitList" [value]="unitT.Order">{{ unitT.Unit }}
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <span *ngFor="let unitT of dgUnitList">{{unitT.CurVal}} {{unitT.ShortCode}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

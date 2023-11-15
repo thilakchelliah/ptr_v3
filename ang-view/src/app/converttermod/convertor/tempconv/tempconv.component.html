@@ -8,7 +8,7 @@
                 <div class="container">
                     <div class="row justify-content-center text-center mb-5">
                         <label for="formFile" class="form-label ">Celcius Scale</label>
-                        <input type="range" class="form-range text-danger" min="-270" max="270" list="tempcmarks" value="0" [(ngModel)]="celcsiusVal"  (change)="CtoF()"x>
+                        <input type="range" class="form-range text-danger" min="-270" max="270" list="tempcmarks" value="0" [(ngModel)]="celcsiusVal"  (change)="CtoF()" (input)="CtoF()">
                         <span class="range-slider__value">{{celcsiusVal}}</span>
                         <datalist id="tempcmarks">
                             <option *ngFor="let val of celciusScale" value="{{val}}" [label]="(val%50)?'':val+'C'">
@@ -18,7 +18,7 @@
 
                     <div class="row justify-content-center text-center mb-5">
                         <label for="formFile" class="form-label ">Fahrenheit Scale</label>
-                        <input type="range" class="form-range" min="-270" max="270" list="tempfmarks" value="32"  [(ngModel)]="fahrenheitVal" (change)="FtoC()">
+                        <input type="range" class="form-range" min="-270" max="270" list="tempfmarks" value="32"  [(ngModel)]="fahrenheitVal" (change)="FtoC()" (input)="FtoC()">
                         <span class="range-slider__value">{{fahrenheitVal}}</span>
                         <datalist id="tempfmarks">
                             <option *ngFor="let val of fahrenheitScale" value="{{val}}" [label]="(val%100)?'':val+'F'">

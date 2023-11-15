@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { CommonfuncService } from '../../service/commonfunc.service'
+import { CommonfuncService } from '../../../service/commonfunc.service'
 declare var $: any;
 
 @Component({
